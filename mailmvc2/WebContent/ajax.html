@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+	function validate(){
+	var cc=document.getElementById("nn").value;
+	
+	//step 1 how to get XHR
+	var xhr=new XMLHttpRequest();
+	
+	//step 2 how xhr will open connection with server
+	xhr.open("get","validate.jsp?id="+cc,true) ;
+	
+	//step 3 how xhr will send request to server
+	xhr.send();
+	
+	//step 4 how xhr will get response from server
+	xhr.onreadystatechange=function(){
+		if(xhr.readyState==4){
+			var vv=xhr.responseText;
+			// step 5 how to display response
+			document.getElementById("rr").innerHTML=vv;
+		}
+	}
+	
+	}
+</script>
+</head>
+<body onload="validate()">
+	<div id="rr"></div>
+</body>
+</html>
+
+
+
+
+
+

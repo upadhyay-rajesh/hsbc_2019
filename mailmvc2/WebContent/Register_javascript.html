@@ -1,0 +1,80 @@
+<!DOCTYPE html><html><head>
+<script>
+	function loadCountry() {
+	var xhr=new XMLHttpRequest();
+	xhr.open("get","LoadCountry.jsp",true) ;
+	xhr.send();
+	xhr.onreadystatechange=function(){
+		if(xhr.readyState==4){
+			var vv=xhr.responseText;
+			document.getElementById("cou").innerHTML = vv;
+		}
+	}
+	}
+	function loadState() {
+	var v = document.getElementById("cou1").value;
+	var xhr=new XMLHttpRequest();
+	xhr.open("get","LoadState.jsp?cname="+v,true) ;
+	xhr.send();
+	xhr.onreadystatechange=function(){
+		if(xhr.readyState==4){
+			var vv=xhr.responseText;
+			document.getElementById("state").innerHTML = vv;
+		}
+	}
+		
+	
+
+	}
+	function loadCity() {
+	}
+	
+	function enableButton(){
+		var n=document.getElementById("ag").value;
+		if(n=="on"){
+			document.getElementById("b").disabled=false;
+		}
+		alert(n)
+	}
+	function loadCapcha(){
+		var dd=parseInt(Math.random()*10000);
+		var vv1="<input type=text id=cv value="+dd+" disabled><br>Enter Above No<input type=text id=vno onblur=validateCapcha()>";
+		document.getElementById("capcha").innerHTML=vv1;
+		alert(dd);
+	}
+	function validateCapcha(){
+	var z1=document.getElementById("cv").value;
+	var z2=document.getElementById("vno").value;
+	if(z1==z2){
+	alert("capcha validated");
+	}
+	else{
+	loadCapcha();
+	}
+	
+	}
+</script>
+
+
+</head>
+<body onload="loadCountry()">
+	<div id="cou"></div>
+	<div id="state"></div>
+	<div id="city"></div>
+	<div id="capcha"></div>
+	<input type=checkbox id="ag" onclick="enableButton()">Agree <br>
+	<input type=button id="b" value=register disabled>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
